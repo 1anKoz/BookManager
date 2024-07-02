@@ -1,0 +1,30 @@
+﻿namespace BookManagerApp.Data.Enum
+{
+    public enum BookGenre
+    {
+        ForChildren,
+        Textbooks,
+        Cooking,
+        SetBooks,
+        Fiction,
+        Poetry,
+        Biographies,
+        Business,
+        YoungAdultLiterature,
+        Fantasy,
+        History,
+        InformationTechnology,
+        Comic,
+        Crime,
+        ContemporaryFiction,
+        Science,
+        Handbooks,
+        Law,
+        Religions,
+        Sport,
+        Art,
+        Trip,
+        Realationships,
+        SelfDevelopment
+    }
+}
