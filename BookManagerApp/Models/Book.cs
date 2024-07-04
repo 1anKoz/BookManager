@@ -21,6 +21,7 @@ namespace BookManagerApp.Models
         public DateTime StartedAt { get; set; }
         public DateTime FinishedAt { get; set; }
 
+        public int ShelfId { get; set; }
         public Shelf? Shelf { get; set; }
 
         ////[ForeignKey("Quote")]

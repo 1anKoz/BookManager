@@ -12,6 +12,7 @@ namespace BookManagerApp.Models
         //[ForeignKey("Book")]
         //public int BookId { get; set; }
         //public Book Book { get; set; }
+        [ForeignKey("Book")]
         public ICollection<Book>? Books { get; set; }
 
     }
