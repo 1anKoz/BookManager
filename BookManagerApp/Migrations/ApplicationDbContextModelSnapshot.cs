@@ -73,7 +73,7 @@ namespace BookManagerApp.Migrations
 
                     b.HasIndex("ShelfId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("BookManagerApp.Models.Quote", b =>
@@ -100,7 +100,7 @@ namespace BookManagerApp.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Quotes");
+                    b.ToTable("Quotes", (string)null);
                 });
 
             modelBuilder.Entity("BookManagerApp.Models.Shelf", b =>
@@ -116,7 +116,7 @@ namespace BookManagerApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shelves");
+                    b.ToTable("Shelves", (string)null);
                 });
 
             modelBuilder.Entity("BookManagerApp.Models.Book", b =>
