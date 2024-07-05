@@ -24,7 +24,7 @@ namespace BookManagerApp.Models
         public int ShelfId { get; set; }
         public virtual Shelf? Shelf { get; set; }
 
-        ////[ForeignKey("Quote")]
-        //public ICollection<Quote>? Quotes { get; set; }
+        //[ForeignKey("Quote")]
+        public virtual List<Quote>? Quotes { get; set; }
     }
 }

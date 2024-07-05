@@ -18,6 +18,7 @@ namespace BookManagerApp.Data
             }
         }
 
+        public DbSet<Quote> Quotes { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Shelf> Shelves { get; set; }
     }
