@@ -49,7 +49,17 @@ namespace BookManagerApp.Data
                                     IsBeingRead = false,
                                     IsFavourite = true,
                                     StartedAt = new DateTime(2019, 6, 1, 7, 47, 0),
-                                    FinishedAt = DateTime.Now
+                                    FinishedAt = DateTime.Now,
+
+                                    Quotes = new List<Quote>()
+                                    {
+                                        new Quote()
+                                        {
+                                            Content = "Humans had always been better at killing than any other living thing.",
+                                            Page = 123,
+                                            IsFavourite = false,
+                                        }
+                                    }
                                 },
 
                                 new Book() {
@@ -99,6 +109,23 @@ namespace BookManagerApp.Data
                                     IsFavourite = true,
                                     StartedAt = new DateTime(2019, 6, 1, 7, 47, 0),
                                     FinishedAt = new DateTime(2022, 8, 12, 4, 09, 12),
+
+                                    Quotes = new List<Quote>()
+                                    {
+                                        new Quote()
+                                        {
+                                            Content = "Perhaps one did not want to be loved so much as to be understood.",
+                                            Page = 28,
+                                            IsFavourite = false,
+                                        },
+
+                                        new Quote()
+                                        {
+                                            Content = "If you want to keep a secret, you must also hide it from yourself.",
+                                            Page = 180,
+                                            IsFavourite = true,
+                                        }
+                                    }
                                 }
                             }
                         }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookManagerApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240704124242_SecondaryCreate")]
-    partial class SecondaryCreate
+    [Migration("20240705082050_AddQuoteTable")]
+    partial class AddQuoteTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,9 +34,6 @@ namespace BookManagerApp.Migrations
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Book")
-                        .HasColumnType("int");
 
                     b.Property<string>("CoverUrl")
                         .HasColumnType("nvarchar(max)");
@@ -76,9 +73,36 @@ namespace BookManagerApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Book");
+                    b.HasIndex("ShelfId");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookManagerApp.Models.Quote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsFavourite")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Page")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("Quotes");
                 });
 
             modelBuilder.Entity("BookManagerApp.Models.Shelf", b =>
@@ -101,9 +125,27 @@ namespace BookManagerApp.Migrations
                 {
                     b.HasOne("BookManagerApp.Models.Shelf", "Shelf")
                         .WithMany("Books")
-                        .HasForeignKey("Book");
+                        .HasForeignKey("ShelfId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Shelf");
+                });
+
+            modelBuilder.Entity("BookManagerApp.Models.Quote", b =>
+                {
+                    b.HasOne("BookManagerApp.Models.Book", "Book")
+                        .WithMany("Quotes")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("BookManagerApp.Models.Book", b =>
+                {
+                    b.Navigation("Quotes");
                 });
 
             modelBuilder.Entity("BookManagerApp.Models.Shelf", b =>

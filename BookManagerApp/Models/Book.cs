@@ -6,7 +6,6 @@ namespace BookManagerApp.Models
 {
     public class Book
     {
-        [Key]
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? CoverUrl { get; set; }
@@ -22,9 +21,8 @@ namespace BookManagerApp.Models
         public DateTime FinishedAt { get; set; }
 
         public int ShelfId { get; set; }
-        public Shelf? Shelf { get; set; }
+        public virtual Shelf? Shelf { get; set; }
 
-        ////[ForeignKey("Quote")]
-        //public ICollection<Quote>? Quotes { get; set; }
+        public virtual List<Quote>? Quotes { get; set; }
     }
 }
