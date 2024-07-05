@@ -33,9 +33,6 @@ namespace BookManagerApp.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Book")
-                        .HasColumnType("int");
-
                     b.Property<string>("CoverUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -74,7 +71,7 @@ namespace BookManagerApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Book");
+                    b.HasIndex("ShelfId");
 
                     b.ToTable("Books");
                 });
@@ -99,7 +96,9 @@ namespace BookManagerApp.Migrations
                 {
                     b.HasOne("BookManagerApp.Models.Shelf", "Shelf")
                         .WithMany("Books")
-                        .HasForeignKey("Book");
+                        .HasForeignKey("ShelfId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Shelf");
                 });

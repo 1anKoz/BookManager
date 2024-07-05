@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookManagerApp.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,23 +40,23 @@ namespace BookManagerApp.Migrations
                     IsFavourite = table.Column<bool>(type: "bit", nullable: false),
                     StartedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FinishedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShelfId = table.Column<int>(type: "int", nullable: false),
-                    Book = table.Column<int>(type: "int", nullable: true)
+                    ShelfId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Books_Shelves_Book",
-                        column: x => x.Book,
+                        name: "FK_Books_Shelves_ShelfId",
+                        column: x => x.ShelfId,
                         principalTable: "Shelves",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_Book",
+                name: "IX_Books_ShelfId",
                 table: "Books",
-                column: "Book");
+                column: "ShelfId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
