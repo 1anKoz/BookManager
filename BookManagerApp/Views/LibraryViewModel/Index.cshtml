@@ -1,23 +1,18 @@
-﻿@model LibraryViewModel
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model BookManagerApp.Models.LibraryViewModel
 
 <h1>Library</h1>
 
-@foreach(Shelf shelf in Model.Shelves)
+
+@foreach(var shelf in Model.Shelves)
 {
     <h5>@shelf.Name</h5>
-}
-
-
-@foreach(Book book in Model.Books)
-{
-    <h5>@book.Title</h5>
-    <h5>@book.Author</h5>
-    <h5>@book.Shelf</h5>
-    <h5>@book.StartedAt</h5>
+    foreach(var book in Model.Books)
+    {
+        if(book.ShelfId == shelf.Id)
+        {
+            <li>@book.Title</li>
+            <li>@book.Author</li>
+        }
+        
+    }
 }
