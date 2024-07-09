@@ -1,56 +1,169 @@
 ﻿<style>
-    /* Optional custom styles */
-    .container .row {
+    .scrollmenu {
         display: flex;
-        flex-wrap: nowrap; /* Ensure no wrapping occurs */
-        justify-content: space-between; /* Add space between columns if needed */
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        background-color: rgb(240, 229, 207);
     }
 
-    .container .col-md-6 {
-        flex: 1;
-        max-width: 50%; /* Ensure columns take up half the width each */
-        box-sizing: border-box; /* Include padding and border in element's total width and height */
+        /* Customize scrollbar for WebKit-based browsers (Chrome, Safari) */
+        .scrollmenu::-webkit-scrollbar {
+            height: 12px; /* Adjust the height of the scrollbar */
+        }
+
+        .scrollmenu::-webkit-scrollbar-track {
+            background: rgb(218, 192, 163); /* Background color of the scrollbar track */
+            border-radius: 10px; /* Rounded corners for the track */
+        }
+
+        .scrollmenu::-webkit-scrollbar-thumb {
+            background: rgb(75, 101, 135); /* Color of the scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for the thumb */
+        }
+
+            .scrollmenu::-webkit-scrollbar-thumb:hover {
+                background: rgb(16, 44, 87); /* Color of the scrollbar thumb on hover */
+            }
+
+        .scrollmenu .tile {
+            background-color: rgb(240, 229, 207);
+            width: 300px;
+            height: 300px;
+            border: 3px solid rgb(75, 101, 135);
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            display: inline-block;
+            flex: 0 0 auto;
+            color: rgb(16, 44, 87);
+            box-shadow: 2px 2px 8px rgb(16, 44, 87);
+        }
+
+        .scrollmenu .tile-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .scrollmenu .image-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .scrollmenu .blur img {
+            transition: 0.5s ease;
+        }
+
+            .scrollmenu .blur img:hover {
+                -webkit-filter: blur(5px);
+                transition: 0.5s ease;
+            }
+
+        .scrollmenu .author, .scrollmenu .title {
+            margin: 0;
+            padding: 0px 0;
+        }
+
+        .scrollmenu .author {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .scrollmenu .title {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            margin-bottom: -5px;
+        }
+
+        .scrollmenu .limit-chars {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 20ch;
+        }
+
+        .scrollmenu .buttons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scrollmenu .button {
+            display: block;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: rgb(16, 44, 87);
+            background-color: rgb(218, 192, 163);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 9px rgb(75, 101, 135);
+            margin-bottom: 15px;
+            margin-left: 5px;
+            white-space: normal;
+        }
+
+            .scrollmenu .button:hover {
+                background-color: rgb(234, 219, 200);
+            }
+
+            .scrollmenu .button:active {
+                background-color: rgb(234, 219, 200);
+                box-shadow: 0 5px rgb(16, 44, 87);
+                transform: translateY(4px);
+            }
+
+    .shelf {
+        color: rgb(16, 44, 87);
+        margin-left: 20px;
+        font-size: larger;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
-    .container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+    .shelf-border {
+        border: 3px solid rgb(218, 192, 163);
+        padding: 5px;
+        border-radius: 10px;
+        margin-bottom: 5px;
     }
 </style>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-0 text-success-emphasis">Author</strong>
-                    <h3 class="mb-2">Book Title</h3>
-                    <div class="col-auto d-none d-lg-block">
-                        <img src="https://m.media-amazon.com/images/I/51stFu+S8aL._SY445_SX342_.jpg" alt="Metro2033 cover" width="200" height="250">
-                    </div>
-                </div>
-                
-            </div>
+
+<div class="shelf-border">
+    <strong class="shelf">Shelf Name</strong>
+    <div class="scrollmenu">
+
+        <div class="tile">
+            <table>
+                <tr>
+                    <p class="author">Dmitry Glukhovsky</p>
+                    <p class="title limit-chars">Przepis na człowieka</p>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="blur image-container">
+                            <img src="https://m.media-amazon.com/images/I/A1Jp9VdxsQL._AC_UF894,1000_QL80_.jpg" width="180" height="230" title="Book Details" style="border-radius: 10px;">
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <button class="button">Add Quote</button>
+                            <button class="button">Start Reading</button>
+                            <button class="button">Finish Book</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        <div class="col-md-6">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-success-emphasis">Design</strong>
-                    <h3 class="mb-0">Post title</h3>
-                    <div class="mb-1 text-body-secondary">Nov 11</div>
-                    <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                        Continue reading
-                        <svg class="bi"><use xlink:href="#chevron-right" /></svg>
-                    </a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
