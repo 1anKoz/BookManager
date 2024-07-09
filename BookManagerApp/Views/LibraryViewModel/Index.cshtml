@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model LibraryViewModel
+
+<style>
     .scrollmenu {
         display: flex;
         overflow-x: auto;
@@ -84,7 +86,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 20ch;
+            max-width: 18ch;
         }
 
         .scrollmenu .buttons {
@@ -136,34 +138,44 @@
     }
 </style>
 
+@foreach (var shelf in Model.Shelves)
+{
+    <div class="shelf-border">
+        <strong class="shelf">@shelf.Name</strong>
+        <div class="scrollmenu">
 
-<div class="shelf-border">
-    <strong class="shelf">Shelf Name</strong>
-    <div class="scrollmenu">
+            @foreach(var book in Model.Books)
+            {
+                if(shelf.Id == book.ShelfId)
+                {
+                    <div class="tile">
+                    <table>
+                        <tr>
+                            <p class="author">@book.Author</p>
+                            <p class="title limit-chars">@book.Title</p>
+                        </tr>
 
-        <div class="tile">
-            <table>
-                <tr>
-                    <p class="author">Dmitry Glukhovsky</p>
-                    <p class="title limit-chars">Przepis na człowieka</p>
-                </tr>
+                        <tr>
+                            <td>
+                                <div class="blur image-container">
+                                    <img src="@book.CoverUrl" width="180" height="230" title="Book Details" style="border-radius: 10px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <button class="button">Add Quote</button>
+                                    <button class="button">Start Reading</button>
+                                    <button class="button">Finish Book</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                }
+                
+            }
+            
 
-                <tr>
-                    <td>
-                        <div class="blur image-container">
-                            <img src="https://m.media-amazon.com/images/I/A1Jp9VdxsQL._AC_UF894,1000_QL80_.jpg" width="180" height="230" title="Book Details" style="border-radius: 10px;">
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <button class="button">Add Quote</button>
-                            <button class="button">Start Reading</button>
-                            <button class="button">Finish Book</button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
         </div>
-
     </div>
-</div>
+}
