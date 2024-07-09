@@ -1,0 +1,181 @@
+﻿@model LibraryViewModel
+
+<style>
+    .scrollmenu {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        background-color: rgb(240, 229, 207);
+    }
+
+        /* Customize scrollbar for WebKit-based browsers (Chrome, Safari) */
+        .scrollmenu::-webkit-scrollbar {
+            height: 12px; /* Adjust the height of the scrollbar */
+        }
+
+        .scrollmenu::-webkit-scrollbar-track {
+            background: rgb(218, 192, 163); /* Background color of the scrollbar track */
+            border-radius: 10px; /* Rounded corners for the track */
+        }
+
+        .scrollmenu::-webkit-scrollbar-thumb {
+            background: rgb(75, 101, 135); /* Color of the scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for the thumb */
+        }
+
+            .scrollmenu::-webkit-scrollbar-thumb:hover {
+                background: rgb(16, 44, 87); /* Color of the scrollbar thumb on hover */
+            }
+
+        .scrollmenu .tile {
+            background-color: rgb(240, 229, 207);
+            width: 300px;
+            height: 300px;
+            border: 3px solid rgb(75, 101, 135);
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            display: inline-block;
+            flex: 0 0 auto;
+            color: rgb(16, 44, 87);
+            box-shadow: 2px 2px 8px rgb(16, 44, 87);
+        }
+
+        .scrollmenu .tile-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .scrollmenu .image-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .scrollmenu .blur img {
+            transition: 0.5s ease;
+        }
+
+            .scrollmenu .blur img:hover {
+                -webkit-filter: blur(5px);
+                transition: 0.5s ease;
+            }
+
+        .scrollmenu .author, .scrollmenu .title {
+            margin: 0;
+            padding: 0px 0;
+        }
+
+        .scrollmenu .author {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .scrollmenu .title {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            margin-bottom: -5px;
+        }
+
+        .scrollmenu .limit-chars {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 18ch;
+        }
+
+        .scrollmenu .buttons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scrollmenu .button {
+            display: block;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: rgb(16, 44, 87);
+            background-color: rgb(218, 192, 163);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 9px rgb(75, 101, 135);
+            margin-bottom: 15px;
+            margin-left: 5px;
+            white-space: normal;
+        }
+
+            .scrollmenu .button:hover {
+                background-color: rgb(234, 219, 200);
+            }
+
+            .scrollmenu .button:active {
+                background-color: rgb(234, 219, 200);
+                box-shadow: 0 5px rgb(16, 44, 87);
+                transform: translateY(4px);
+            }
+
+    .shelf {
+        color: rgb(16, 44, 87);
+        margin-left: 20px;
+        font-size: larger;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .shelf-border {
+        border: 3px solid rgb(218, 192, 163);
+        padding: 5px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+</style>
+
+@foreach (var shelf in Model.Shelves)
+{
+    <div class="shelf-border">
+        <strong class="shelf">@shelf.Name</strong>
+        <div class="scrollmenu">
+
+            @foreach(var book in Model.Books)
+            {
+                if(shelf.Id == book.ShelfId)
+                {
+                    <div class="tile">
+                    <table>
+                        <tr>
+                            <p class="author">@book.Author</p>
+                            <p class="title limit-chars">@book.Title</p>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="blur image-container">
+                                    <img src="@book.CoverUrl" width="180" height="230" title="Book Details" style="border-radius: 10px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <button class="button">Add Quote</button>
+                                    <button class="button">Start Reading</button>
+                                    <button class="button">Finish Book</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                }
+                
+            }
+            
+
+        </div>
+    </div>
+}

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Book>
+
+<h1>Book</h1>
+
+@foreach(var item in Model)
+{
+    <h7>@item.Title</h7>
+    <h7>@item.Author</h7>
+    <h7>@item.Isbn</h7>
+    <h7>@item.StartedAt</h7>
+}
