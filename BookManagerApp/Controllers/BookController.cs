@@ -20,7 +20,7 @@ namespace BookManagerApp.Controllers
 
         public IActionResult Detail(int id)
         {
-            Book book = _context.Books.Include(q => q.Quotes).FirstOrDefault(c => c.Id == id);
+            Book book = _context.Books.Include(q => q.Quotes).FirstOrDefault(b => b .Id == id);
             return View(book);
         }
     }

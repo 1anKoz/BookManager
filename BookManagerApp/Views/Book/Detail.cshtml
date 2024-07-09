@@ -89,4 +89,10 @@
     </div>
 </div>
 
+<div>
+    @foreach(var quote in Model.Quotes)
+    {
+        <p>@quote.Content</p>
+    }
+</div>
 <hr class="featurette-divider">
