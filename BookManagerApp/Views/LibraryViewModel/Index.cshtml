@@ -158,7 +158,9 @@
                         <tr>
                             <td>
                                 <div class="blur image-container">
-                                    <img src="@book.CoverUrl" width="180" height="230" title="Book Details" style="border-radius: 10px;">
+                                    <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">
+                                        <img src="@book.CoverUrl" width="180" height="230" title="Book Details" style="border-radius: 10px;">
+                                    </a>
                                 </div>
                             </td>
                             <td>
