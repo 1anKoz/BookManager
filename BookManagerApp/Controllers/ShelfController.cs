@@ -1,6 +1,7 @@
 ﻿using BookManagerApp.Data;
 using BookManagerApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManagerApp.Controllers
 {
@@ -14,7 +15,7 @@ namespace BookManagerApp.Controllers
 
         public IActionResult Index()
         {
-            List<Shelf> shelves = _context.Shelves.ToList();
+            List<Shelf> shelves = _context.Shelves.Include(b => b.Books).ToList();
             return View(shelves);
         }
     }
