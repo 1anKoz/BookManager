@@ -126,6 +126,29 @@ namespace BookManagerApp.Data
                                             IsFavourite = true,
                                         }
                                     }
+                                },
+
+                                new Book() {
+                                    Title = "1984",
+                                    CoverUrl = "https://s.lubimyczytac.pl/upload/books/5108000/5108559/1137148-352x500.jpg",
+                                    Description = "Nowe tłumaczenie jednej z najbardziej przełomowych książek XX wieku odchodzi od utartych rozwiązań terminologicznych i oferuje świeże spojrzenie na kultowy " +
+                                    "tekst Orwella, podkreślające jego niesłabnącą aktualność również w dzisiejszych czasach\r\nNapisana ponad siedemdziesiąt lat temu powieść w chwili wydania była złowrogą" +
+                                    " przepowiednią George’a Orwella dotyczącą zagrożenia, jakie niesie za sobą totalitaryzm. I chociaż rok 1984 już dawno minął, dystopijna wizja świata permanentnej wojny, w " +
+                                    "którym życie jednostki jest w całości podporządkowane władzom, kłamstwa zastępują prawdę, a samodzielne myślenie może być zbrodnią, jest nadal aktualna.\r\nTrudno przecenić " +
+                                    "znaczenie tej powieści dla współczesnej kultury. Orwell nie tylko mistrzowsko obnażył w niej mechanizmy działania totalitaryzmu i propagandy, lecz również trafnie pokazał, jak " +
+                                    "wielką rolę w totalnej kontroli nad społeczeństwem mogą odegrać media i język fałszujący rzeczywistość.",
+                                    Genre = Enum.BookGenre.Fiction,
+                                    Author = "George Orwell",
+                                    //Isbn = "9788383351759",
+                                    //UserDescription = "Świetnie się zaczyna, bardzo dobry świat przedstawiony, ale jednocześnie fabularnie książka jest straszliwie nudna. Nieważne, co przydarzało się głównemu" +
+                                    //" bohaterowi - absolutnie mnie to nie obchodziło. Na początku myślałam, że to celowe, że ma pokazać, że bohater jest idealna owca w tłumie, nudna i płaską, z wypranym mózgiem," +
+                                    //" która nabierze życia w trakcie lektury, ale srogo się zawiodłam. Książka trąca mizoginią (typową dla męskich autorów tamtych czasów),niemniej, warto ją przeczytać dla tego " +
+                                    //"antyutopijnego porządku świata, bo w tym aspekcie mrozi i skłania do refleksji.",
+                                    //Score = 90,
+                                    IsBeingRead = true,
+                                    IsFavourite = true,
+                                    StartedAt = new DateTime(2019, 6, 1, 7, 47, 0),
+                                    FinishedAt = new DateTime(2022, 8, 12, 4, 09, 12)
                                 }
                             }
                         }
