@@ -13,11 +13,6 @@ namespace BookManagerApp.Controllers
         {
             _bookRepository = bookRepository;
         }
-        //public IActionResult Index()
-        //{
-        //    List<Book> books = _bookRepository.Books.ToList();
-        //    return View(books);
-        //}
 
         public async Task<IActionResult> Detail(int id)
         {
