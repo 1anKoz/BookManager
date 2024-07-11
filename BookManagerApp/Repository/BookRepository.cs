@@ -39,7 +39,7 @@ namespace BookManagerApp.Repository
 
         public async Task<Book> GetByIdAsync(int id)
         {
-            return await _context.Books.FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Books.Include(q => q.Quotes).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()
