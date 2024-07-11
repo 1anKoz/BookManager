@@ -26,7 +26,7 @@ namespace BookManagerApp.Repository
 
         public async Task<IEnumerable<Shelf>> GetAll()
         {
-            return await _context.Shelves.ToListAsync();
+            return await _context.Shelves.Include(b => b.Books).ToListAsync();
         }
 
         public async Task<Shelf> GetByIdAsync(int id)
