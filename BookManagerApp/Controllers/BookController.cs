@@ -19,5 +19,10 @@ namespace BookManagerApp.Controllers
             Book book = await _bookRepository.GetByIdAsync(id);
             return View(book);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
