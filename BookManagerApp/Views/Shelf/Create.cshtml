@@ -1,1 +1,12 @@
-﻿
+﻿@using BookManagerApp.Data.Enum
+@model Shelf
+
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name">Name of your new shelf</label>
+        <input asp-for="Name" class="form-control" placeholder="Name of your new shelf">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
