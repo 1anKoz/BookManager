@@ -1,37 +1,50 @@
-﻿@model Book
+﻿@using BookManagerApp.Data.Enum
+@model Book
 
-<form>
+<form method="post" asp-action="Create">
     <div class="form-group">
-        <label asp-for="Title"></label>
+        <label asp-for="ShelfId">Shelf</label>
+        <select asp-for="ShelfId" class="form-control" asp-items="ViewBag.Shelves">
+            <option value="">--Select--</option>
+        </select>
+        <span asp-validation-for="ShelfId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
         <input asp-for="Title" class="form-control" placeholder="Book Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Author"></label>
+        <label asp-for="Author">Author's full name</label>
         <input asp-for="Author" class="form-control" placeholder="Author's full name">
+        <span asp-validation-for="Author" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="CoverUrl"></label>
+        <label asp-for="CoverUrl">Cover Image</label>
         <input asp-for="CoverUrl" class="form-control" placeholder="Url fot the cover photo">
+        <span asp-validation-for="CoverUrl" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Genre"></label>
-        <input asp-for="Genre" class="form-control" placeholder="Genre">
+        <label asp-for="Genre">Genre</label>
+        <select asp-for="Genre" asp-items="@Html.GetEnumSelectList<BookGenre>()" class="form-control form-control-lg">
+            <option>--Select--</option>
+        </select>
     </div>
     <div class="form-group">
-        <label asp-for="Description"></label>
+        <label asp-for="Description">Book Description</label>
         <textarea asp-for="Description" class="form-control" rows="5" placeholder="Book Description"></textarea>
     </div>
     <div class="form-group">
-        <label asp-for="Isbn"></label>
+        <label asp-for="Isbn">ISBN</label>
         <input asp-for="Isbn" class="form-control" placeholder="ISBN">
     </div>
     <div class="form-group">
-        <label asp-for="UserDescription"></label>
+        <label asp-for="UserDescription">User Description</label>
         <textarea asp-for="UserDescription" class="form-control" rows="5" placeholder="Your feelings and notes (nobody can see them)"></textarea>
     </div>
     
     <div>
-        <label for="exampleInputStartedAt">Started at (date and time):</label>
+        <label asp-for="StartedAt">Started at (date and time):</label>
         <input asp-for="StartedAt" type="datetime-local">
     </div>
 
