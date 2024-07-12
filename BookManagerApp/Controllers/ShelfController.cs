@@ -16,7 +16,7 @@ namespace BookManagerApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Shelf> shelves = await _shelfRepository.GetAll();
+            IEnumerable<Shelf> shelves = await _shelfRepository.GetAllAsync();
             //List<Shelf> shelves = _context.Shelves.Include(b => b.Books).ToList();
             return View(shelves);
         }

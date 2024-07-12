@@ -24,7 +24,7 @@ namespace BookManagerApp.Repository
             return Save();
         }
 
-        public async Task<IEnumerable<Shelf>> GetAll()
+        public async Task<IEnumerable<Shelf>> GetAllAsync()
         {
             return await _context.Shelves.Include(b => b.Books).ToListAsync();
         }
