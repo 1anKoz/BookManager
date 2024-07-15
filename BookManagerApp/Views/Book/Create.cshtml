@@ -7,23 +7,23 @@
         <select asp-for="ShelfId" class="form-control" asp-items="ViewBag.Shelves">
             <option value="">--Select--</option>
         </select>
-        <span asp-validation-for="ShelfId" class="text-danger"></span>
+        <span style="color: red" asp-validation-for="ShelfId" class="text-danger"></span>
     </div>
     @* <input type="hidden" asp-for="ShelfId" value="@ViewBag.ShelfId" /> *@
     <div class="form-group">
         <label asp-for="Title">Title</label>
         <input asp-for="Title" class="form-control" placeholder="Book Title">
-        <span asp-validation-for="Title" class="text-danger"></span>
+        <span style="color: red" asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Author">Author's full name</label>
         <input asp-for="Author" class="form-control" placeholder="Author's full name">
-        <span asp-validation-for="Author" class="text-danger"></span>
+        <span style="color: red" asp-validation-for="Author" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="CoverUrl">Cover Image</label>
         <input asp-for="CoverUrl" class="form-control" placeholder="Url fot the cover photo">
-        <span asp-validation-for="CoverUrl" class="text-danger"></span>
+        <span style="color: red" asp-validation-for="CoverUrl" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Genre">Genre</label>
