@@ -23,10 +23,12 @@ namespace BookManagerApp.Controllers
             return View(book);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? shelfId)
         {
             var shelves = await _shelfRepository.GetAllAsync();
             ViewBag.Shelves = new SelectList(shelves, "Id", "Name");
+
+            ViewBag.ShelfId = shelfId ?? 0;
 
             return View();
         }

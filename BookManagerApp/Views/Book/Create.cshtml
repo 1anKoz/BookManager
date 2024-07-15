@@ -9,6 +9,7 @@
         </select>
         <span asp-validation-for="ShelfId" class="text-danger"></span>
     </div>
+    @* <input type="hidden" asp-for="ShelfId" value="@ViewBag.ShelfId" /> *@
     <div class="form-group">
         <label asp-for="Title">Title</label>
         <input asp-for="Title" class="form-control" placeholder="Book Title">
