@@ -27,17 +27,19 @@ namespace BookManagerApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Quote quote)
+        public async Task<IActionResult> Create(Quote quote, int? bookId)
         {
             if (!ModelState.IsValid)
             {
                 var books = await _bookRepository.GetAll();
-                ViewBag.Books = new SelectList(books, "Id", "Name");
+                ViewBag.Books = new SelectList(books, "Id", "Title");
 
                 return View(quote);
             }
+
+            quote.BookId = bookId ?? quote.BookId; // Ensure BookId is set
             _quoteRepository.Add(quote);
-            return RedirectToAction("Detail", "Book");
+            return RedirectToAction("Detail", "Book", new { id = quote.BookId });
         }
     }
 }

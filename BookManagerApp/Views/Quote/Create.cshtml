@@ -1,5 +1,5 @@
 ﻿@using BookManagerApp.Data.Enum
-@model Quote
+@model BookManagerApp.Models.Quote
 
 <form method="post" asp-action="Create">
     <div class="form-group">
@@ -10,6 +10,7 @@
         <span style="color: red" asp-validation-for="BookId" class="text-danger"></span>
     </div>
     @* <input type="hidden" asp-for="BookId" value="@ViewBag.BookId" /> *@
+
     <div class="form-group">
         <label asp-for="Content">Quote</label>
         <input asp-for="Content" class="form-control" placeholder="Quote">
