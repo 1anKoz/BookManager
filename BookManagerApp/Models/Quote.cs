@@ -6,6 +6,7 @@ namespace BookManagerApp.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required(ErrorMessage = "Content is required")]
         public string? Content { get; set; }
         public int Page { get; set; }
         public bool IsFavourite { get; set; }

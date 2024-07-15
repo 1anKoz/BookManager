@@ -26,6 +26,7 @@ namespace BookManagerApp.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create(Quote quote)
         {
             if (!ModelState.IsValid)
@@ -37,5 +38,6 @@ namespace BookManagerApp.Controllers
             }
             _quoteRepository.Add(quote);
             return RedirectToAction("Detail", "Book");
+        }
     }
 }
