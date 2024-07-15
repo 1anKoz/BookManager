@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IShelfRepository, ShelfRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
