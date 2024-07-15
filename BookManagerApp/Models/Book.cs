@@ -7,10 +7,13 @@ namespace BookManagerApp.Models
     public class Book
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Title is required")]
         public string? Title { get; set; }
+        [Required(ErrorMessage = "Cover image URL is required")]
         public string? CoverUrl { get; set; }
         public string? Description { get; set; }
         public BookGenre Genre { get; set; }
+        [Required(ErrorMessage = "Author is required")]
         public string? Author { get; set; }
         public string? Isbn { get; set; }
         public string? UserDescription { get; set; }
@@ -20,6 +23,7 @@ namespace BookManagerApp.Models
         public DateTime StartedAt { get; set; }
         public DateTime FinishedAt { get; set; }
 
+        [Required(ErrorMessage = "You must specify ShelfId")]
         public int ShelfId { get; set; }
         public virtual Shelf? Shelf { get; set; }
 

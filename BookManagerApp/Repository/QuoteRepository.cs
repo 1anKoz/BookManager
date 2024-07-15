@@ -5,33 +5,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookManagerApp.Repository
 {
-    public class ShelfRepository : IShelfRepository
+    public class QuoteRepository : IQuoteRepository
     {
         private readonly ApplicationDbContext _context;
-        public ShelfRepository(ApplicationDbContext context)
+
+        public QuoteRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-        public bool Add(Shelf shelf)
+
+        public bool Add(Quote quote)
         {
-            _context.Add(shelf);
+            _context.Add(quote);
             return Save();
         }
 
-        public bool Delete(Shelf shelf)
+        public bool Delete(Quote quote)
         {
-            _context.Remove(shelf);
+            _context.Remove(quote);
             return Save();
         }
 
-        public async Task<IEnumerable<Shelf>> GetAllAsync()
+        public async Task<IEnumerable<Quote>> GetAllAsync()
         {
-            return await _context.Shelves.Include(b => b.Books).ToListAsync();
+            return await _context.Quotes.ToListAsync();
         }
 
-        public async Task<Shelf> GetByIdAsync(int id)
+        public async Task<Quote> GetByIdAsync(int id)
         {
-            return await _context.Shelves.FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Quotes.FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()
@@ -40,9 +42,9 @@ namespace BookManagerApp.Repository
             return saved > 0 ? true : false;
         }
 
-        public bool Update(Shelf shelf)
+        public bool Update(Quote quote)
         {
-            _context.Update(shelf);
+            _context.Update(quote);
             return Save();
         }
     }
