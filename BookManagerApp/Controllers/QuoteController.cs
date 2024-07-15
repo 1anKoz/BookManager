@@ -37,7 +37,7 @@ namespace BookManagerApp.Controllers
                 return View(quote);
             }
 
-            quote.BookId = bookId ?? quote.BookId; // Ensure BookId is set
+            quote.BookId = bookId ?? quote.BookId;
             _quoteRepository.Add(quote);
             return RedirectToAction("Detail", "Book", new { id = quote.BookId });
         }

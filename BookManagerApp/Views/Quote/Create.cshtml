@@ -2,15 +2,17 @@
 @model BookManagerApp.Models.Quote
 
 <form method="post" asp-action="Create">
-    <div class="form-group">
+    @* <div class="form-group">
         <label asp-for="BookId">Book</label>
         <select asp-for="BookId" class="form-control" asp-items="ViewBag.Books">
             <option value="">--Select--</option>
         </select>
         <span style="color: red" asp-validation-for="BookId" class="text-danger"></span>
+    </div> *@
+    <div>
+        <h5>Creating quote for book: @ViewBag.BookId</h5>
+        <input type="hidden" asp-for="BookId" value="@ViewBag.BookId" />
     </div>
-    @* <input type="hidden" asp-for="BookId" value="@ViewBag.BookId" /> *@
-
     <div class="form-group">
         <label asp-for="Content">Quote</label>
         <input asp-for="Content" class="form-control" placeholder="Quote">
@@ -19,6 +21,7 @@
     <div class="form-group">
         <label asp-for="Page">Page</label>
         <input asp-for="Page" class="form-control" placeholder="Page">
+        <span style="color: red" asp-validation-for="Page" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="IsFavourite">IsFavourite</label>

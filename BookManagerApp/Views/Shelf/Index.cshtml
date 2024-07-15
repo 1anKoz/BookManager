@@ -130,7 +130,7 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
-    .shelf-border {
+    .shelf-border{
         border: 3px solid rgb(218, 192, 163);
         padding: 5px;
         border-radius: 10px;
@@ -138,19 +138,19 @@
     }
 </style>
 
+<button class="button" onclick="location.href='@Url.Action("Create", "Shelf")'">New Shelf</button>
+
 @foreach (var shelf in Model)
 {
     <div class="shelf-border">
         <strong class="shelf">@shelf.Name</strong>
-        <a href="@Url.Action("Create", "Book", new { shelfId = shelf.Id })" class="btn btn-primary">
-            <button class="button">Add Book</button>
-        </a>
+        <button class="button" onclick="location.href='@Url.Action("Create", "Book", new { shelfId = shelf.Id })'">Add Book</button>
         <div class="scrollmenu">
 
             @foreach (var book in shelf.Books)
-        {
-                    <div class="tile">
-                        <table>
+            {
+                <div class="tile">
+                    <table>
                             <tr>
                                 <p class="author">@book.Author</p>
                                 <p class="title limit-chars">@book.Title</p>
@@ -166,7 +166,7 @@
                                 </td>
                                 <td>
                                     <div>
-                                        <button class="button">Add Quote</button>
+                                        <button class="button" onclick="location.href='@Url.Action("Create", "Quote", new { bookId = book.Id })'">Add Quote</button>
                                         <button class="button">Start Reading</button>
                                         <button class="button">Finish Book</button>
                                     </div>
@@ -175,8 +175,6 @@
                         </table>
                     </div>
             }
-
-
         </div>
     </div>
 }
