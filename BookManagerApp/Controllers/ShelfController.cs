@@ -1,6 +1,7 @@
 ﻿using BookManagerApp.Data;
 using BookManagerApp.Interfaces;
 using BookManagerApp.Models;
+using BookManagerApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,9 +10,12 @@ namespace BookManagerApp.Controllers
     public class ShelfController : Controller
     {
         private readonly IShelfRepository _shelfRepository;
-        public ShelfController(IShelfRepository shelfRepository)
+        private readonly IPhotoService _photoService;
+
+        public ShelfController(IShelfRepository shelfRepository, IPhotoService photoService)
         {
-                _shelfRepository = shelfRepository;
+            _shelfRepository = shelfRepository;
+            _photoService = photoService;
         }
 
         public async Task<IActionResult> Index()
@@ -27,14 +31,27 @@ namespace BookManagerApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Shelf shelf)
+        public async Task<IActionResult> Create(CreateShelfViewModel shelfVM)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(shelf);
+                var result = await _photoService.AddPhotoAsync(shelfVM.Icon);
+
+                var shelf = new Shelf
+                {
+                    Name = shelfVM.Name,
+                    Description = shelfVM.Description,
+                    Icon = result.Url.ToString()
+                };
+                _shelfRepository.Add(shelf);
+                return RedirectToAction("Index");
             }
-            _shelfRepository.Add(shelf);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo upload failed");
+            }
+
+            return View(shelfVM);
         }
     }
 }

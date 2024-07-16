@@ -1,6 +1,6 @@
 ﻿using CloudinaryDotNet.Actions;
 
-namespace BookManagerApp.Services
+namespace BookManagerApp.Interfaces
 {
     public interface IPhotoService
     {
