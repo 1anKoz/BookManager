@@ -20,5 +20,21 @@ namespace BookManagerApp.Controllers
             //List<Shelf> shelves = _context.Shelves.Include(b => b.Books).ToList();
             return View(shelves);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Shelf shelf)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(shelf);
+            }
+            _shelfRepository.Add(shelf);
+            return RedirectToAction("Index");
+        }
     }
 }

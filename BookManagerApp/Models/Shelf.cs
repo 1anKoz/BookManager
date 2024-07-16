@@ -6,6 +6,7 @@ namespace BookManagerApp.Models
     public class Shelf
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "You have to name your shelf!")]
         public string Name { get; set; }
         public string? Description { get; set; }
         public string? Icon {  get; set; }
