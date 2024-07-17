@@ -34,6 +34,11 @@ namespace BookManagerApp.Repository
             return await _context.Shelves.FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<Shelf> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Shelves.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public bool Save()
         {
             var saved = _context.SaveChanges();

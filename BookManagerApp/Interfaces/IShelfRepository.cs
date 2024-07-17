@@ -6,6 +6,7 @@ namespace BookManagerApp.Interfaces
     {
         Task<IEnumerable<Shelf>> GetAll();
         Task<Shelf> GetByIdAsync(int id);
+        Task<Shelf> GetByIdAsyncNoTracking(int id);
 
         bool Add(Shelf shelf);
         bool Update(Shelf shelf);

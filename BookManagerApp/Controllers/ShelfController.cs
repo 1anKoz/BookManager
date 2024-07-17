@@ -75,7 +75,7 @@ namespace BookManagerApp.Controllers
                 ModelState.AddModelError("", "Failed to edit shelf");
                 return View("Edit", shelfVM);
             }
-            var userShelf = await _shelfRepository.GetByIdAsync(id);
+            var userShelf = await _shelfRepository.GetByIdAsyncNoTracking(id);
 
             if (userShelf != null)
             {
