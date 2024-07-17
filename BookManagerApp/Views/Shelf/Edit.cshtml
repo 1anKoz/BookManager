@@ -1,7 +1,8 @@
 ﻿﻿@using BookManagerApp.Data.Enum
-@model BookManagerApp.ViewModels.CreateShelfViewModel
+@model BookManagerApp.ViewModels.EditShelfViewModel
 
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+
     <div class="form-group">
         <label asp-for="Name">Name</label>
         <input asp-for="Name" class="form-control" placeholder="Name of your new shelf">

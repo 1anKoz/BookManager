@@ -35,7 +35,7 @@ namespace BookManagerApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _photoService.AddPhotoAsync(shelfVM.Icon);
+                var result = await _photoService.AddPhotoAsync(shelfVM.IconImg);
 
                 var shelf = new Shelf
                 {
@@ -52,6 +52,61 @@ namespace BookManagerApp.Controllers
             }
 
             return View(shelfVM);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var shelf = await _shelfRepository.GetByIdAsync(id);
+            if (shelf == null) return View("Error");
+            var shelfVM = new EditShelfViewModel
+            {
+                Name= shelf.Name,
+                Description= shelf.Description,
+                IconUrl = shelf.Icon,
+            };
+            return View(shelfVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditShelfViewModel shelfVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit shelf");
+                return View("Edit", shelfVM);
+            }
+            var userShelf = await _shelfRepository.GetByIdAsync(id);
+
+            if (userShelf != null)
+            {
+                try
+                {
+                    await _photoService.DeletePhotoAsync(userShelf.Icon);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Could not delete the icon photo");
+                    return View(shelfVM);
+                }
+                var photoResult = await _photoService.AddPhotoAsync(shelfVM.IconImg);
+
+                var shelf = new Shelf
+                {
+                    Id = id,
+                    Name = shelfVM.Name,
+                    Description = shelfVM.Description,
+                    Icon = photoResult.Url.ToString()
+                };
+
+                _shelfRepository.Update(shelf);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(shelfVM);
+            }
+
         }
     }
 }
