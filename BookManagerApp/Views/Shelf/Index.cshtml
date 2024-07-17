@@ -143,6 +143,8 @@
     <div class="shelf-border">
         <strong class="shelf">@shelf.Name</strong>
         <a asp-controller="Shelf" asp-action="Edit" asp-route-id="@shelf.Id" class="btn btn-sm btn-outline-info">Edit Shelf</a>
+        <a asp-controller="Shelf" asp-action="Delete" asp-route-id="@shelf.Id" class="btn btn-sm btn-outline-info">Delete</a>
+
         <div class="scrollmenu">
 
             @foreach (var book in shelf.Books)

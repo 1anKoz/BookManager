@@ -106,7 +106,24 @@ namespace BookManagerApp.Controllers
             {
                 return View(shelfVM);
             }
+        }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var shelfDetail = await _shelfRepository.GetByIdAsync(id);
+            if (shelfDetail == null) return View("Error");
+            return View(shelfDetail);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteShelf(int id)
+        {
+            var shelfDetails = await _shelfRepository.GetByIdAsync(id);
+            if (shelfDetails == null) return View("Error");
+
+            _shelfRepository.Delete(shelfDetails);
+
+            return RedirectToAction("Index");
         }
     }
 }
